@@ -1,3 +1,86 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+* {
+  font-family: 'Roboto', sans-serif;
 }
+
+* {
+  border: 2px solid blue;
+}
+
+html, body {
+  background-color: lightseagreen;
+  height: 100vh;
+  width: 100vw
+  
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  width: 100vw;
+}
+
+.header-title {
+  margin-left: 20px
+}
+
+.header-welcome-message {
+  margin-right: 20px
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.nav-right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.user-annual-amount-spent {
+  margin-top: 5px
+}
+
+.user-spent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-spend-title {
+  margin-bottom: 0px;
+  margin-top: 2px
+}
+
+.book-adventure-button {
+  height: 50px;
+  width: 250px;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+}
+
+.trip-selection-buttons-container {
+  height: 100px;
+  width: 455px;
+  margin-left: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.nav-trip-selection-button {
+  border-radius: 5px;
+  height: 25px;
+  width: 135px;
+  background-color: blue;
+  color: white;
+}
+
+
+
