@@ -25,16 +25,48 @@
         <h3 class="user-spend-title">Total Annual Spend:</h3>
         <p class="user-annual-amount-spent">$10,000</p>
       </div>
-      <button class="book-adventure-button">BOOK NEW ADVENTURE</button>
+      <!-- <button class="book-adventure-button">BOOK NEW ADVENTURE</button> -->
     </section>
   </nav>
-  <section class="trip-cards-container">
-    <article class="trip-card">
-      
-
-    </article>
-
+  <section class="book-trip-form-container">
+    <h3 class="form-title">Book Your Next Adventure</h3>
+    <form class="book-trip-form" action="">
+      <!-- <label for="date"></label> -->
+      <input class="input" type="date" placeholder="Date">
+      <!-- <label for="Duration"></label> -->
+      <input class="input" type="number" min="0" placeholder="Duration">
+      <!-- <label for="number-of-travelers"></label> -->
+      <input class="input" type="number" min="0" placeholder="Number of Travelers">
+      <select class = "input" name="Destination" id="">
+        <option class="input" value="" placeholder="Destination"></option>
+        <option value="" disabled selected>Select Your Destination</option>
+        <option value="Peru">Costa Rica</option>
+      </select>
+    </form>
   </section>
+  <section class="trip-cards-container">
+    <!-- This is where trip cards will go, gird or glide.js -->
+  </section>
+  <!-- <footer>
+    <article>
+      <h3>About us</h3>
+      <p>Our Story</p>
+      <p>How it Works</p>
+      <p>FAQ</p>
+    </article>
+    <article>
+      <h3>Get Inspired</h3>
+      <p>Hiking Tips</p>
+      <p>Checklist for Traveling</p>
+      <p>Restaurants</p>
+    </article>
+    <article>
+      <h3>Support</h3>
+      <p>Help</p>
+      <p>Contact Us</p>
+      <p>Terms of Service</p>
+    </article>
+  </footer> -->
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
