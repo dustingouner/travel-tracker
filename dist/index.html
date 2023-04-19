@@ -4,10 +4,70 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <title>JETSETTERS HAVEN</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <header>
+    <h1 class="header-title">JETSETTERS HAVEN</h1>
+    <h2 class="header-welcome-message">WELCOME BACK, DUSTIN!</h2>
+  </header>
+  <nav class="nav-container">
+    <section class="trip-selection-buttons-container">
+      <button class="nav-trip-selection-button past-trips-button">Past Trips</button>
+      <button class="nav-trip-selection-button upcoming-trips-button">Upcoming Trips</button>
+      <button class="nav-trip-selection-button pending-trips-button">Pending Trips</button>
+    </section>
+    <section class="nav-right-side">
+      <div class="user-spent-container">
+        <h3 class="user-spend-title">Total Annual Spend:</h3>
+        <p class="user-annual-amount-spent">$10,000</p>
+      </div>
+      <!-- <button class="book-adventure-button">BOOK NEW ADVENTURE</button> -->
+    </section>
+  </nav>
+  <section class="book-trip-form-container">
+    <h3 class="form-title">Book Your Next Adventure</h3>
+    <form class="book-trip-form" action="">
+      <!-- <label for="date"></label> -->
+      <input class="input" type="date" placeholder="Date">
+      <!-- <label for="Duration"></label> -->
+      <input class="input" type="number" min="0" placeholder="Duration">
+      <!-- <label for="number-of-travelers"></label> -->
+      <input class="input" type="number" min="0" placeholder="Number of Travelers">
+      <select class = "input" name="Destination" id="">
+        <option class="input" value="" placeholder="Destination"></option>
+        <option value="" disabled selected>Select Your Destination</option>
+        <option value="Peru">Costa Rica</option>
+      </select>
+    </form>
+  </section>
+  <section class="trip-cards-container">
+    <!-- This is where trip cards will go, gird or glide.js -->
+  </section>
+  <!-- <footer>
+    <article>
+      <h3>About us</h3>
+      <p>Our Story</p>
+      <p>How it Works</p>
+      <p>FAQ</p>
+    </article>
+    <article>
+      <h3>Get Inspired</h3>
+      <p>Hiking Tips</p>
+      <p>Checklist for Traveling</p>
+      <p>Restaurants</p>
+    </article>
+    <article>
+      <h3>Support</h3>
+      <p>Help</p>
+      <p>Contact Us</p>
+      <p>Terms of Service</p>
+    </article>
+  </footer> -->
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

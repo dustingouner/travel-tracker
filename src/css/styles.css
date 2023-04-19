@@ -1,3 +1,133 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+* {
+  font-family: 'Roboto', sans-serif;
 }
+
+* {
+  border: 2px solid blue;
+  margin: 0;
+}
+
+html, body {
+  background-color: lightseagreen;
+  /* height: 100vh;
+  width: 100vw */
+  
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  
+}
+
+.header-title {
+  margin-left: 20px
+}
+
+.header-welcome-message {
+  margin-right: 20px
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 10vh;
+}
+
+.nav-right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.user-annual-amount-spent {
+  margin-top: 5px
+}
+
+.user-spent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 85px;
+  width: 300px;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.user-spend-title {
+  margin-bottom: 0px;
+  margin-top: 2px
+}
+
+.book-adventure-button {
+  height: 50px;
+  width: 250px;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+}
+
+.trip-selection-buttons-container {
+  height: 85px;
+  width: 455px;
+  margin-left: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.nav-trip-selection-button {
+  border-radius: 5px;
+  height: 25px;
+  width: 135px;
+  background-color: blue;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.book-trip-form-container {
+  height: 12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.book-trip-form {
+  height: 5vh;
+  width: 850px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  height: 27px;
+  width: 198px;
+  justify-content: space-around;
+  box-sizing: content-box;
+}
+
+.trip-cards-container {
+  height: 60vh;
+  width: 100vw;
+}
+
+footer {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+
+article {
+  height: 100px;
+}
+
+
