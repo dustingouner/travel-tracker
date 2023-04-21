@@ -25,12 +25,16 @@ class Traveler {
   getPastTrips(allTrips) {
     const filterPast = allTrips.filter(trip => {
       if(trip.userID === this.id && trip.status === 'approved'){
-       return trip
+      return trip
       }
     }) 
     filterPast.forEach(trip => this.pastTrips.push(trip))
     return this.pastTrips
   }
+
+  // addDestinationInfoToTrip() {
+
+  // }
 
   calculateTotalAnnualSpend(allTrips) {
     this.getPastTrips(allTrips)
@@ -40,7 +44,6 @@ class Traveler {
       const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration
       return acc + flightCost + lodgingCost
     }, 0)
-    console.log(totalCost)
     return totalCost * 1.1
   }
 }

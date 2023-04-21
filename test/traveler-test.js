@@ -88,7 +88,7 @@ it('should be able to store upcoming trips', function() {
   expect(traveler1.upcomingTrips).to.deep.equal([])
 })
 it('should be able to calculate total amount spent for all time', function() {
-  expect(traveler1.calculateTotalAnnualSpend(allTrips)).to.equal(10406gi)
+  expect(traveler1.calculateTotalAnnualSpend(allTrips)).to.equal(10406)
 })
 it.skip('should be able to book a new trip and return an estimated cost based on the number of travelers, destination, and duration', function() {
   expect(traveler1.upcomingTrips).to.deep.equal([])

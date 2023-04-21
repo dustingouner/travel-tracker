@@ -1,8 +1,8 @@
 // class Trip {
-   constructor(newTrip) {
-     this.id = trip.id
+  //  constructor(newTrip) {
+  //    this.id = trip.id
 
-   }
+  //  }
  
 
 // methods
