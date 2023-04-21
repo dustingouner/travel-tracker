@@ -131,12 +131,47 @@ article {
 } */
 
 .media-scroller {
+  margin-top: 10px;
+  --spacer: 2rem;
   display: grid;
-  gap: var(--size-3);
+  gap: var(--spacer);
   grid-auto-flow: column;
-  grid-auto-columns: 25%;
+  grid-auto-columns: 10%;
+
+  padding: 0 var(--spacer) var(--spacer);
 
   overflow-x: auto;
   overscroll-behavior-inline: contain;
 }
 
+.media-element {
+  display: grid;
+  grid-template-rows: min-content ;
+  gap: var(--spacer);
+  padding: var(--spacer);
+  background: var(--surface--2);
+  border-radius: var(--radius--2);
+  box-shadow: var(--shadow-2);
+  text-align: center;
+}
+
+.media-element > img {
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.snaps-inline {
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: var(--spacer, 1rem);
+}
+
+.snaps-inline > * {
+  scroll-snap-align: start;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5px;
+}

@@ -11,6 +11,15 @@ class Traveler {
   
   }
 
+  // getUserID() {
+
+  // }
+//   getData(travelerID) {
+//     return this.data.travelers.find(currentUser => currentUser.id === travelerID)
+//   }
+// }
+
+
   getPendingTrips(allTrips) {
     const filterPending = allTrips.filter(trip => {
       if(trip.userID === this.id && trip.status === 'pending'){
@@ -47,6 +56,8 @@ class Traveler {
     return totalCost * 1.1
   }
 }
+
+
 
 // methods
 // getTrips() - function to fetch the travelers trip data, push data into travelers trip property

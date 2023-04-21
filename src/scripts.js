@@ -15,6 +15,7 @@ import './images/new-zealand.png'
 let travelersData
 let tripsData
 let destinationsData
+let userID
 
 
 
@@ -54,6 +55,10 @@ function fetchAllData() {
       destinationsData = data[1].destinations
       tripsData = data[2].trips
     })
+    // .then(() => {
+    //   travelersData.gettraveler(userID)
+    //   // find user ID
+    // })
 }
 
 function travel() {
