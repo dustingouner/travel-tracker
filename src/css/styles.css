@@ -114,7 +114,7 @@ header {
 }
 
 .trip-cards-container {
-  height: 60vh;
+  height: 65vh;
   width: 100vw;
 }
 
@@ -148,7 +148,7 @@ article {
   display: grid;
   grid-template-rows: min-content ;
   gap: var(--spacer);
-  padding: var(--spacer);
+  padding: 10px;
   background: var(--surface--2);
   border-radius: var(--radius--2);
   box-shadow: var(--shadow-2);
