@@ -16,7 +16,7 @@ import './images/new-zealand.png'
 let travelersData
 let tripsData
 let destinationsData
-let traveler = new Traveler(travelersData, destinationsData, tripsData)
+let traveler
 
 
 
@@ -37,10 +37,10 @@ const cardTravelerDuration = document.querySelector('.traveler-duration')
 // <----------------EVENT LISTENERS------------------>
 
 window.addEventListener('load', fetchAllData)
-window.addEventListener('load', () => {
-  welcomeName.innerText = `WELCOME BACK, ${traveler.getTravelerFirstName(2)}`
-})
-// pastTripsButton.addEventListener('click', travel)
+// window.addEventListener('load', () => {
+//   welcomeName.innerText = `WELCOME BACK, ${traveler.getTravelerFirstName(2)}`
+// })
+pastTripsButton.addEventListener('click', travel)
 
 
 
@@ -66,16 +66,17 @@ function fetchAllData() {
       tripsData = data[2].trips
     })
     .then(() => {
-      traveler = new Traveler(travelersData, destinationsData, tripsData)
+      let currenttraveler = travelersData.find(traveler => traveler.id === 1)
+      traveler = currenttraveler
       // travelersData.find(element => element.id === 2)
       // find user ID
     })
 }
 
-// function travel() {
-//   console.log(tripsData)
-//   console.log(user)
-// }
+function travel() {
+  console.log(traveler)
+  // console.log(user)
+}
 
 
 
