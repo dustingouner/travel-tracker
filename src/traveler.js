@@ -3,18 +3,18 @@ class Traveler {
   this.tripsAll = tripsData
   this.destinationsAll = destinationsData
   this.traveler = travelerObj
-  this.id = travelerObj.id
-  this.name = travelerObj.name
+  // this.id = travelerObj.id
+  // this.name = travelerObj.name
  
   }
 
-  getTravelerID() {
-    return this.traveler.id
-  }
+  // getTravelerID() {
+  //   return this.traveler.getTravelerFirstName()
+  // }
 
   getTravelerFirstName() {
     console.log(this.traveler)
-    return this.name.split(' ')[0]
+    return this.traveler.split(' ')[0]
   }
 
   getPendingTrips(allTrips) {
