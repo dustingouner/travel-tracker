@@ -1,24 +1,21 @@
 class Traveler {
-  constructor(travelerObj, destinationsObj, tripsObj) {
+  constructor(travelerObj, destinationsData, tripsData) {
+  this.tripsAll = tripsData
+  this.destinationsAll = destinationsData
+  this.traveler = travelerObj
   this.id = travelerObj.id
   this.name = travelerObj.name
-  this.destinationsAll = destinationsObj
-  this.tripsAll = tripsObj
-  this.pendingTrips = []
-  this.pastTrips = []
-  this.upcomingTrips = []
-  this.totalSpent = 0
-  
+ 
   }
 
-  // getUserID() {
+  getTravelerID() {
+    return this.traveler.id
+  }
 
-  // }
-//   getData(travelerID) {
-//     return this.data.travelers.find(currentUser => currentUser.id === travelerID)
-//   }
-// }
-
+  getTravelerFirstName() {
+    console.log(this.traveler)
+    return this.name.split(' ')[0]
+  }
 
   getPendingTrips(allTrips) {
     const filterPending = allTrips.filter(trip => {
@@ -26,10 +23,8 @@ class Traveler {
         return trip
       }
     }) 
-    filterPending.forEach(trip => this.pendingTrips.push(trip))
-    return this.pendingTrips
+    return filterPending
   }
-  // Do I need a method to return pending trip destination data to use image, alt, cost for cards?
     
   getPastTrips(allTrips) {
     const filterPast = allTrips.filter(trip => {
@@ -37,17 +32,12 @@ class Traveler {
       return trip
       }
     }) 
-    filterPast.forEach(trip => this.pastTrips.push(trip))
-    return this.pastTrips
+    return filterPast
   }
 
-  // addDestinationInfoToTrip() {
-
-  // }
-
   calculateTotalAnnualSpend(allTrips) {
-    this.getPastTrips(allTrips)
-    const totalCost = this.pastTrips.reduce((acc, trip) => {
+    let travelerPastTrips = this.getPastTrips(allTrips)
+    const totalCost = travelerPastTrips.reduce((acc, trip) => {
       const destination = this.destinationsAll.find(destination => destination.id === trip.destinationID)
       const flightCost = destination.estimatedFlightCostPerPerson * trip.travelers
       const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration
@@ -59,9 +49,7 @@ class Traveler {
 
 
 
-// methods
-// getTrips() - function to fetch the travelers trip data, push data into travelers trip property
-// calculateTotalSpent() - calculate total amount spent by traveler this year, add 10% travel agent fee
+
 
 export default Traveler;
 
