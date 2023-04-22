@@ -1,4 +1,4 @@
-class Traveler {
+ class Traveler {
   constructor(travelerDataObj) {
   this.traveler = travelerDataObj
   

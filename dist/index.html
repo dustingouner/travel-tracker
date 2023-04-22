@@ -32,11 +32,11 @@
     <h3 class="form-title">Book Your Next Adventure</h3>
     <form class="book-trip-form" action="">
       <!-- <label for="date"></label> -->
-      <input class="input" type="date" placeholder="Date">
+      <input class="input" type="date" min="" placeholder="Date">
       <!-- <label for="Duration"></label> -->
-      <input class="input" type="number" min="0" placeholder="Duration">
+      <input class="input" type="number" min="1" placeholder="Duration">
       <!-- <label for="number-of-travelers"></label> -->
-      <input class="input" type="number" min="0" placeholder="Number of Travelers">
+      <input class="input" type="number" min="1" placeholder="Number of Travelers">
       <select class = "input" name="Destination" id="">
         <option class="input" value="" placeholder="Destination"></option>
         <option value="" disabled selected>Select Your Destination</option>
@@ -47,8 +47,8 @@
   <section class="trip-cards-container">
     <div class="past-trips-container">
     <h2>Past Trips</h2>
-    <div class="media-scroller snaps-inline">
-      <article class="media-element">
+    <div class="media-scroller snaps-inline" id="pastTrips">
+      <!-- <article class="media-element">
         <img class="card-image" src="./images/new-zealand.png" alt="">
         <div class="card-info">
           <span class="dest-title">New Zealand</span>
@@ -56,8 +56,8 @@
           <span class="traveler-number">Travelers 4</span>
           <span class="traveler-duration">Duration 10 days</span>
          </div>
-      </article>
-      <article class="media-element">
+      </article> -->
+      <!-- <article class="media-element">
         <img src="./images/new-zealand.png" alt="">
         <div class="card-info">
           <span class="dest-title">New Zealand</span>
@@ -119,13 +119,13 @@
           <span class="traveler-number">Travelers 4</span>
           <span class="traveler-duration">Duration 10 days</span>
          </div>
-      </article>
+      </article> -->
 
     </div>
     <div class="pending-trips-container">
       <h2>Pending Trips</h2>
-      <div class="media-scroller snaps-inline">
-        <article class="media-element">
+      <div class="media-scroller snaps-inline" id="pendingTrips">
+        <!-- <article class="media-element">
           <img src="./images/new-zealand.png" alt="">
           <div class="card-info">
             <span class="dest-title">New Zealand</span>
@@ -142,7 +142,7 @@
             <span class="traveler-number">Travelers 4</span>
             <span class="traveler-duration">Duration 10 days</span>
            </div>
-        </article>
+        </article> -->
   </div>
     <!-- This is where trip cards will go, gird or glide.js -->
   </section>
