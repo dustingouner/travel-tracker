@@ -4,6 +4,7 @@ import Traveler from '../src/traveler'
 import mockData from '../src/data/mockData'
 
 
+
 // describe('See if the tests are running', function() {
 //   it('should return true', function() {
 //     expect(true).to.equal(true);
@@ -11,13 +12,13 @@ import mockData from '../src/data/mockData'
 // });
 
 describe('Traveler', function() {
-  let traveler1, traveler2, traveler3, allDestinations, allTrips
+  let traveler1, traveler2, allDestinations, allTrips, travelersData
   this.beforeEach(function() {
     allDestinations = mockData.destinations 
     allTrips = mockData.trips
-    traveler1 = new Traveler(mockData.travelers[1], allDestinations, allTrips)//traveler id 2
-    traveler2 = new Traveler(mockData.travelers[2], allDestinations, allTrips)//traveler id 3
-    traveler3 = new Traveler(mockData.travelers[6], allDestinations, allTrips)//traveler id 7
+    travelersData = mockData.travelers
+    traveler1 = new Traveler(travelersData[1])//traveler id 2
+    traveler2 = new Traveler(travelersData[2])//traveler id 3
   })
 
   it('should be a function', function () {
@@ -30,10 +31,12 @@ describe('Traveler', function() {
 
   it('should be able to return a travelers id', function() {
     expect(traveler1.getTravelerID()).to.equal(2)
-  })
+    expect(traveler2.getTravelerID()).to.equal(3)
+  });
 
   it('should be able to return a travelers first name', function() {
     expect(traveler1.getTravelerFirstName()).to.equal('Rachael')
+    expect(traveler2.getTravelerFirstName()).to.equal('Sibby')
   })
 
   it('should be able to filter and return pending trips', function() {
@@ -77,9 +80,7 @@ describe('Traveler', function() {
   })
 
   it('should be able to calculate total amount spent for all time', function() {
-    expect(traveler1.calculateTotalAnnualSpend(allTrips)).to.equal(10406)
-  })
-  it.skip('should be able to book a new trip and return an estimated cost based on the number of travelers, destination, and duration', function() {
-    expect(traveler1.upcomingTrips).to.deep.equal([])
+    expect(traveler1.calculateTotalAnnualSpend(allTrips, allDestinations)).to.equal('$10,406')
+    expect(traveler2.calculateTotalAnnualSpend(allTrips, allDestinations)).to.equal('$8,943')
   })
 })

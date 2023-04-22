@@ -1,25 +1,20 @@
 class Traveler {
-  constructor(travelerObj, destinationsData, tripsData) {
-  this.tripsAll = tripsData
-  this.destinationsAll = destinationsData
-  this.traveler = travelerObj
-  // this.id = travelerObj.id
-  // this.name = travelerObj.name
- 
+  constructor(travelerDataObj) {
+  this.traveler = travelerDataObj
+  
   }
 
-  // getTravelerID() {
-  //   return this.traveler.getTravelerFirstName()
-  // }
+  getTravelerID() {
+    return this.traveler.id
+  }
 
   getTravelerFirstName() {
-    console.log(this.traveler)
-    return this.traveler.split(' ')[0]
+    return this.traveler.name.split(' ')[0]
   }
 
   getPendingTrips(allTrips) {
     const filterPending = allTrips.filter(trip => {
-      if(trip.userID === this.id && trip.status === 'pending'){
+      if(trip.userID === this.traveler.id && trip.status === 'pending'){
         return trip
       }
     }) 
@@ -28,22 +23,24 @@ class Traveler {
     
   getPastTrips(allTrips) {
     const filterPast = allTrips.filter(trip => {
-      if(trip.userID === this.id && trip.status === 'approved'){
+      if(trip.userID === this.traveler.id && trip.status === 'approved'){
       return trip
       }
     }) 
     return filterPast
   }
 
-  calculateTotalAnnualSpend(allTrips) {
+  calculateTotalAnnualSpend(allTrips, allDestinations) {
     let travelerPastTrips = this.getPastTrips(allTrips)
     const totalCost = travelerPastTrips.reduce((acc, trip) => {
-      const destination = this.destinationsAll.find(destination => destination.id === trip.destinationID)
+      const destination = allDestinations.find(destination => destination.id === trip.destinationID)
       const flightCost = destination.estimatedFlightCostPerPerson * trip.travelers
       const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration
-      return acc + flightCost + lodgingCost
+      return acc + Math.round(((flightCost + lodgingCost) * 1.1))
     }, 0)
-    return totalCost * 1.1
+    console.log(totalCost)
+    return  `$${totalCost.toLocaleString('en-US')}`
+    console.log(annualStrNum)
   }
 }
 
