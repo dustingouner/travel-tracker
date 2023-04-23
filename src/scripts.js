@@ -18,7 +18,8 @@ let travelersData, tripsData, destinationsData, traveler, destinations
 
 
 // <----------------QUERY SELECTORS------------------>
-const pastTripsButton = document.querySelector('.nav-trip-selection-button')
+const pastTripsButton = document.querySelector('.past-trips-button')
+const pendingTripsButton = document.querySelector('.pending-trips-button')
 const welcomeName = document.querySelector('.header-welcome-message')
 const totalSpend = document.querySelector('.user-annual-amount-spent')
 const cardImage = document.querySelector('.card-image')
@@ -29,6 +30,7 @@ const cardTravelerDuration = document.querySelector('.traveler-duration')
 const travelCard = document.querySelector('.media-element')
 const cardContainer = document.querySelector('.media-scroller')
 const pendingTripContainer = document.getElementById('pendingTrips')
+const pastTripContainer = document.getElementById('pastTrips')
 const inputDate = document.getElementById('inputDate')
 const destSelection = document.getElementById('selectDestination')
 const estTripButton = document.querySelector('.estimate-trip-button')
@@ -38,13 +40,6 @@ const inputDuration = document.getElementById('inputDuration')
 const inputTravelers = document.getElementById('inputTravelers')
 const select = document.querySelector('#selectDestination')
 const destOptions = document.querySelector('.destOptions')
-// const 
-
-
-
-
-
-
 
 
 // <----------------EVENT LISTENERS------------------>
@@ -60,14 +55,12 @@ window.addEventListener('load', () => {
   
   Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
   .then((data) => {
-    // console.log(data[0].travelers)
     travelersData = data[0].travelers
-    // console.log(travelersData)
     destinationsData = data[1].destinations
     tripsData = data[2].trips
   })
   .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 8)
+    let currentTraveler = travelersData.find(traveler => traveler.id === 2)
     traveler = new Traveler(currentTraveler)
     destinations = new Destination(destinationsData)
     displayTravelerName()
@@ -81,19 +74,16 @@ window.addEventListener('load', () => {
 })
   
 
-pastTripsButton.addEventListener('click', travel)
+// pastTripsButton.addEventListener('click', travel)
 estTripButton.addEventListener('click', displayTripEstimate)
 bookTripButton.addEventListener('click', bookNewTrip)
+// pendingTripsButton.addEventListener('click', displayPendingTrips)
 
 
 
 
 // <----------------FUNCTIONS----------------------->
 
-
-function travel() {
-  console.log(traveler)
-}
 
 function displayTravelerName() {
   welcomeName.innerText = `Welcome Back, ${traveler.getTravelerFirstName()}!`
@@ -104,6 +94,7 @@ function displayTotalTravelCost() {
 }
 
 function displayPastTrips(trips) {
+
   const pastTrips = traveler.getPastTrips(trips)
   const addPastTrips = pastTrips.forEach(trip => {
     const destID = trip.destinationID
@@ -116,22 +107,17 @@ function displayPastTrips(trips) {
           <span class="dest-date">Date: ${trip.date}</span>
           <span class="traveler-number">Travelers: ${trip.travelers}</span>
           <span class="traveler-duration">Duration: ${trip.duration} days</span>
-         </div>
+        </div>
     </article>`
   })
 }
 
 function displayPendingTrips(trips) {
-  console.log('what is trips', trips)
+  pendingTripContainer.classList.remove('hidden')
   const pendingTrips = traveler.getPendingTrips(trips)
-  console.log('pending', pendingTrips)
   const addPendingTrips = pendingTrips.forEach(trip => {
     const destID = trip.destinationID
     const destinationInfo = destinations.getDestinationInfo(destID)
-    // console.log(destID)
-    // console.log(destinationInfo)
-    // console.log(trip)
-    // travelCard.innerHTML = ''
     pendingTripContainer.innerHTML += `
     <article class="media-element">
       <img class="card-image" src="${destinationInfo.image}" alt="${destinationInfo.alt}">
@@ -167,19 +153,16 @@ function addDestinationSelection(destinationsData) {
     <option class="destSelection" value="${destination.destination}" id="${destination.id}">${destination.destination}</option>
     `
   })
-  // const inputDuration = document.getElementById('inputDuration')
-  // const inputTravelers = document.getElementById('inputTravelers')
-  // const inputDestination = document.getElementById('')
 }
 
 function displayTripEstimate() {
   const options = select.options
   const destID = parseInt(options[options.selectedIndex].id)
-  console.log('date', inputDate.value)
-  console.log('duration', parseInt(inputDuration.value))
-  console.log('travelers', parseInt(inputTravelers.value))
-  console.log('destination', destID)
-  console.log('traveler', traveler.getTravelerID())//returns traveler id #5
+  // console.log('date', inputDate.value)
+  // console.log('duration', parseInt(inputDuration.value))
+  // console.log('travelers', parseInt(inputTravelers.value))
+  // console.log('destination', destID)
+  // console.log('traveler', traveler.getTravelerID())//returns traveler id #5
   const estimatedTripCost = destinations.estimateTripCost(destID, parseInt(inputDuration.value), parseInt(inputTravelers.value))
   console.log(estimatedTripCost)
   estCost.innerText = `Est cost: ${estimatedTripCost}`
@@ -193,13 +176,12 @@ function bookNewTrip(event) {
   const options = select.options
   const destID = parseInt(options[options.selectedIndex].id)
   const bookingDate = reformatDate()
-  console.log('tripID', tripsData.length + 1)
-  console.log('userID', traveler.getTravelerID())
-  console.log('destID', destID)
-  console.log('travelers', parseInt(inputTravelers.value))
-  console.log('date', reformatDate())
-  console.log('duration', parseInt(inputDuration.value))
-
+  // console.log('tripID', tripsData.length + 1)
+  // console.log('userID', traveler.getTravelerID())
+  // console.log('destID', destID)
+  // console.log('travelers', parseInt(inputTravelers.value))
+  // console.log('date', reformatDate())
+  // console.log('duration', parseInt(inputDuration.value))
   if(!inputDate.value || !inputDuration.value || !inputTravelers.value || !destID) {
     window.alert('Please make sure to select a date and destination and make sure to fill in the number of travelers and duration.')
   } else {
@@ -232,4 +214,3 @@ function reformatDate() {
   return reformattedDate
 }
 
-// {id: <number>, userID: <number>, destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings>}

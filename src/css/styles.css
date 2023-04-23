@@ -14,6 +14,10 @@ html, body {
   
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -138,7 +142,7 @@ article {
   gap: var(--spacer);
   grid-auto-flow: column;
   grid-auto-columns: 10%;
-
+  justify-content: center;
   padding: 0 var(--spacer) var(--spacer);
 
   overflow-x: auto;
@@ -174,9 +178,14 @@ article {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   margin-bottom: 5px;
 }
 
 .estimate-trip-button , .book-trip-button {
   cursor: pointer;
+}
+
+.dest-title {
+  font-weight: 700;
 }
