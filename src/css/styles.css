@@ -14,6 +14,10 @@ html, body {
   
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -63,13 +67,13 @@ header {
   margin-top: 2px
 }
 
-.book-adventure-button {
+/* .book-adventure-button {
   height: 50px;
   width: 250px;
   border-radius: 5px;
   background-color: blue;
   color: white;
-}
+} */
 
 .trip-selection-buttons-container {
   height: 85px;
@@ -87,6 +91,7 @@ header {
   background-color: blue;
   color: white;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .book-trip-form-container {
@@ -137,7 +142,7 @@ article {
   gap: var(--spacer);
   grid-auto-flow: column;
   grid-auto-columns: 10%;
-
+  justify-content: center;
   padding: 0 var(--spacer) var(--spacer);
 
   overflow-x: auto;
@@ -173,5 +178,14 @@ article {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   margin-bottom: 5px;
+}
+
+.estimate-trip-button , .book-trip-button {
+  cursor: pointer;
+}
+
+.dest-title {
+  font-weight: 700;
 }
