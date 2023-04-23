@@ -32,17 +32,21 @@
     <h3 class="form-title">Book Your Next Adventure</h3>
     <form class="book-trip-form" action="">
       <!-- <label for="date"></label> -->
-      <input class="input" type="date" min="" placeholder="Date">
+      <input class="input" type="date" id="inputDate" placeholder="Date">
       <!-- <label for="Duration"></label> -->
-      <input class="input" type="number" min="1" placeholder="Duration">
+      <input class="input" id="inputDuration" type="number" min="1" placeholder="Duration" onfocus="this.value=''" >
       <!-- <label for="number-of-travelers"></label> -->
-      <input class="input" type="number" min="1" placeholder="Number of Travelers">
-      <select class = "input" name="Destination" id="">
-        <option class="input" value="" placeholder="Destination"></option>
+      <input class="input" id="inputTravelers" type="number" min="1" placeholder="Number of Travelers" onfocus="this.value=''" >
+      <select class = "input" name="Destination" id="selectDestination">
+        <!-- <option class="input" value="" placeholder="Destination"></option> -->
         <option value="" disabled selected>Select Your Destination</option>
-        <option value="Peru">Costa Rica</option>
       </select>
     </form>
+    <section>
+      <button class="estimate-trip-button">ESTIMATE COST</button>
+      <button class="book-trip-button">BOOK TRIP</button>
+      <h2 class="est-cost">Estimated Cost:</h2>
+    </section>
   </section>
   <section class="trip-cards-container">
     <div class="past-trips-container">

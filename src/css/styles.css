@@ -63,13 +63,13 @@ header {
   margin-top: 2px
 }
 
-.book-adventure-button {
+/* .book-adventure-button {
   height: 50px;
   width: 250px;
   border-radius: 5px;
   background-color: blue;
   color: white;
-}
+} */
 
 .trip-selection-buttons-container {
   height: 85px;
@@ -87,6 +87,7 @@ header {
   background-color: blue;
   color: white;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .book-trip-form-container {
@@ -174,4 +175,8 @@ article {
   flex-direction: column;
   align-items: center;
   margin-bottom: 5px;
+}
+
+.estimate-trip-button , .book-trip-button {
+  cursor: pointer;
 }

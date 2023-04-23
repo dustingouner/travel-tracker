@@ -29,6 +29,18 @@ const cardTravelerDuration = document.querySelector('.traveler-duration')
 const travelCard = document.querySelector('.media-element')
 const cardContainer = document.querySelector('.media-scroller')
 const pendingTripContainer = document.getElementById('pendingTrips')
+const inputDate = document.getElementById('inputDate')
+const destSelection = document.getElementById('selectDestination')
+const estTripButton = document.querySelector('.estimate-trip-button')
+const bookTripButton = document.querySelector('.book-trip-button')
+const estCost = document.querySelector('.est-cost')
+const inputDuration = document.getElementById('inputDuration').value
+const inputTravelers = document.getElementById('inputTravelers').value
+const select = document.querySelector('#selectDestination')
+// const 
+
+
+
 
 
 
@@ -54,20 +66,23 @@ window.addEventListener('load', () => {
     tripsData = data[2].trips
   })
   .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 2)
+    let currentTraveler = travelersData.find(traveler => traveler.id === 5)
     traveler = new Traveler(currentTraveler)
     destinations = new Destination(destinationsData)
     displayTravelerName()
     displayTotalTravelCost()
     displayPastTrips(tripsData)
     displayPendingTrips(tripsData)
+    disablePastDates()
+    addDestinationSelection(destinationsData)
   })
   
 })
   
 
 pastTripsButton.addEventListener('click', travel)
-
+estTripButton.addEventListener('click', displayTripEstimate)
+// bookTripButton.addEventListener('click')
 
 
 
@@ -92,10 +107,6 @@ function displayPastTrips(trips) {
   const addPastTrips = pastTrips.forEach(trip => {
     const destID = trip.destinationID
     const destinationInfo = destinations.getDestinationInfo(destID)
-    // console.log(destID)
-    // console.log(destinationInfo)
-    // console.log(trip)
-    // travelCard.innerHTML = ''
     cardContainer.innerHTML += `
     <article class="media-element">
       <img class="card-image" src="${destinationInfo.image}" alt="${destinationInfo.alt}">
@@ -133,9 +144,57 @@ function displayPendingTrips(trips) {
 }
 
 function disablePastDates() {
-  let dateToday = new Date()
-  let month = 
+  var date = new Date()
+  var todaysDate = date.getDate()
+  var month = date.getMonth() + 1
+  if(todaysDate < 10) {
+    todaysDate = '0' + todaysDate
+  }
+  if(month < 10) {
+    month = '0' + month
+  }
+  var year = date.getUTCFullYear()
+  var minDate = year + '-' + month + '-' + todaysDate
+  inputDate.setAttribute('min', minDate)
 }
+
+function addDestinationSelection(destinationsData) {
+  console.log(destinationsData)
+  destinationsData.forEach(destination => {
+    destSelection.innerHTML += `
+    <option value="${destination.destination}" id="${destination.id}">${destination.destination}</option>
+    `
+  })
+  // const inputDuration = document.getElementById('inputDuration')
+  // const inputTravelers = document.getElementById('inputTravelers')
+  // const inputDestination = document.getElementById('')
+}
+
+function displayTripEstimate() {
+  // newTrip = new Destination(destinationsData)
+
+  const inputDuration = parseInt(document.getElementById('inputDuration').value)
+  const inputTravelers = parseInt(document.getElementById('inputTravelers').value)
+  const options = select.options
+  const id = parseInt(options[options.selectedIndex].id)
+  // console.log('duration', inputDuration)
+  // console.log('travelers', inputTravelers)
+  // console.log('destination', id)
+  const estimatedTripCost = destinations.estimateTripCost(id, inputDuration, inputTravelers)
+  console.log(estimatedTripCost)
+  estCost.innerText = `Est cost: ${estimatedTripCost}`
+  // inputDate.value = ''
+  // inputTravelers.valueOf = ''
+  // inputDuration.valueOf = ''
+  // options.value = ''
+}
+
+// function clearInputFields() {
+//   inputDate.value = ''
+//   inputTravelers.value = ''
+//   inputDuration.value = ''
+//   options.value = ''
+// }
 
 
 

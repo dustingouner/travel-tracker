@@ -14,8 +14,8 @@ class Destination {
       const lodgingCost = destination.estimatedLodgingCostPerDay * duration
       const estimatedCost = Math.round((flightCost + lodgingCost) * 1.1)
       const stringNum = estimatedCost.toLocaleString('en-US')
-
-     return `$${stringNum}`
+      
+      return `$${stringNum}`
       
   }
 }
