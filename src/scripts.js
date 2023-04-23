@@ -100,7 +100,7 @@ function displayPastTrips(trips) {
     const destID = trip.destinationID
     const destinationInfo = destinations.getDestinationInfo(destID)
     cardContainer.innerHTML += `
-    <article class="media-element">
+    <article class="media-element" tabindex= "0">
       <img class="card-image" src="${destinationInfo.image}" alt="${destinationInfo.alt}">
         <div class="card-info">
           <span class="dest-title">${destinationInfo.destination}</span>
@@ -119,7 +119,7 @@ function displayPendingTrips(trips) {
     const destID = trip.destinationID
     const destinationInfo = destinations.getDestinationInfo(destID)
     pendingTripContainer.innerHTML += `
-    <article class="media-element">
+    <article class="media-element" tabindex="0">
       <img class="card-image" src="${destinationInfo.image}" alt="${destinationInfo.alt}">
         <div class="card-info">
           <span class="dest-title">${destinationInfo.destination}</span>
