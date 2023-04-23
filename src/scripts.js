@@ -34,9 +34,10 @@ const destSelection = document.getElementById('selectDestination')
 const estTripButton = document.querySelector('.estimate-trip-button')
 const bookTripButton = document.querySelector('.book-trip-button')
 const estCost = document.querySelector('.est-cost')
-const inputDuration = document.getElementById('inputDuration').value
-const inputTravelers = document.getElementById('inputTravelers').value
+const inputDuration = document.getElementById('inputDuration')
+const inputTravelers = document.getElementById('inputTravelers')
 const select = document.querySelector('#selectDestination')
+const destOptions = document.querySelector('.destOptions')
 // const 
 
 
@@ -66,7 +67,7 @@ window.addEventListener('load', () => {
     tripsData = data[2].trips
   })
   .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 5)
+    let currentTraveler = travelersData.find(traveler => traveler.id === 8)
     traveler = new Traveler(currentTraveler)
     destinations = new Destination(destinationsData)
     displayTravelerName()
@@ -76,13 +77,13 @@ window.addEventListener('load', () => {
     disablePastDates()
     addDestinationSelection(destinationsData)
   })
-  
+  .catch(error => console.log(error))
 })
   
 
 pastTripsButton.addEventListener('click', travel)
 estTripButton.addEventListener('click', displayTripEstimate)
-// bookTripButton.addEventListener('click')
+bookTripButton.addEventListener('click', bookNewTrip)
 
 
 
@@ -121,6 +122,7 @@ function displayPastTrips(trips) {
 }
 
 function displayPendingTrips(trips) {
+  console.log('what is trips', trips)
   const pendingTrips = traveler.getPendingTrips(trips)
   console.log('pending', pendingTrips)
   const addPendingTrips = pendingTrips.forEach(trip => {
@@ -162,7 +164,7 @@ function addDestinationSelection(destinationsData) {
   console.log(destinationsData)
   destinationsData.forEach(destination => {
     destSelection.innerHTML += `
-    <option value="${destination.destination}" id="${destination.id}">${destination.destination}</option>
+    <option class="destSelection" value="${destination.destination}" id="${destination.id}">${destination.destination}</option>
     `
   })
   // const inputDuration = document.getElementById('inputDuration')
@@ -171,34 +173,63 @@ function addDestinationSelection(destinationsData) {
 }
 
 function displayTripEstimate() {
-  // newTrip = new Destination(destinationsData)
-
-  const inputDuration = parseInt(document.getElementById('inputDuration').value)
-  const inputTravelers = parseInt(document.getElementById('inputTravelers').value)
   const options = select.options
-  const id = parseInt(options[options.selectedIndex].id)
-  // console.log('duration', inputDuration)
-  // console.log('travelers', inputTravelers)
-  // console.log('destination', id)
-  const estimatedTripCost = destinations.estimateTripCost(id, inputDuration, inputTravelers)
+  const destID = parseInt(options[options.selectedIndex].id)
+  console.log('date', inputDate.value)
+  console.log('duration', parseInt(inputDuration.value))
+  console.log('travelers', parseInt(inputTravelers.value))
+  console.log('destination', destID)
+  console.log('traveler', traveler.getTravelerID())//returns traveler id #5
+  const estimatedTripCost = destinations.estimateTripCost(destID, parseInt(inputDuration.value), parseInt(inputTravelers.value))
   console.log(estimatedTripCost)
   estCost.innerText = `Est cost: ${estimatedTripCost}`
-  // inputDate.value = ''
-  // inputTravelers.valueOf = ''
-  // inputDuration.valueOf = ''
-  // options.value = ''
 }
 
-// function clearInputFields() {
-//   inputDate.value = ''
-//   inputTravelers.value = ''
-//   inputDuration.value = ''
-//   options.value = ''
-// }
 
 
 
+function bookNewTrip(event) {
+  event.preventDefault()
+  const options = select.options
+  const destID = parseInt(options[options.selectedIndex].id)
+  const bookingDate = reformatDate()
+  console.log('tripID', tripsData.length + 1)
+  console.log('userID', traveler.getTravelerID())
+  console.log('destID', destID)
+  console.log('travelers', parseInt(inputTravelers.value))
+  console.log('date', reformatDate())
+  console.log('duration', parseInt(inputDuration.value))
 
+  if(!inputDate.value || !inputDuration.value || !inputTravelers.value || !destID) {
+    window.alert('Please make sure to select a date and destination and make sure to fill in the number of travelers and duration.')
+  } else {
+    fetch('http://localhost:3001/api/v1/trips', {
+      method: 'POST',
+      body: JSON.stringify({  
+        id: tripsData.length + 1,
+        userID: traveler.getTravelerID(),
+        destinationID: destID,
+        travelers: parseInt(inputTravelers.value), 
+        date: bookingDate, 
+        duration: parseInt(inputDuration.value), 
+        status: 'pending', 
+        suggestedActivities: []}), 
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    })
+    .then(() => {
+      displayPendingTrips(tripsData)
+      location.reload()
+    })
+  }
+}
 
+function reformatDate() {
+  let originalDate = inputDate.value
+  let dateArray = originalDate.split("-")
+  let reformattedDate = dateArray.join("/")
+  return reformattedDate
+}
 
-
+// {id: <number>, userID: <number>, destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings>}
