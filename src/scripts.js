@@ -158,14 +158,19 @@ function addDestinationSelection(destinationsData) {
 function displayTripEstimate() {
   const options = select.options
   const destID = parseInt(options[options.selectedIndex].id)
-  // console.log('date', inputDate.value)
-  // console.log('duration', parseInt(inputDuration.value))
-  // console.log('travelers', parseInt(inputTravelers.value))
-  // console.log('destination', destID)
-  // console.log('traveler', traveler.getTravelerID())//returns traveler id #5
-  const estimatedTripCost = destinations.estimateTripCost(destID, parseInt(inputDuration.value), parseInt(inputTravelers.value))
-  console.log(estimatedTripCost)
-  estCost.innerText = `Est cost: ${estimatedTripCost}`
+  if(!inputDate.value || !inputDuration.value || !inputTravelers.value || !destID) {
+    window.alert('Please make sure to select a date and destination and make sure to fill in the number of travelers and duration.')
+  } else {
+
+    // console.log('date', inputDate.value)
+    // console.log('duration', parseInt(inputDuration.value))
+    // console.log('travelers', parseInt(inputTravelers.value))
+    // console.log('destination', destID)
+    // console.log('traveler', traveler.getTravelerID())//returns traveler id #5
+    const estimatedTripCost = destinations.estimateTripCost(destID, parseInt(inputDuration.value), parseInt(inputTravelers.value))
+    console.log(estimatedTripCost)
+    estCost.innerText = `Est cost: ${estimatedTripCost}`
+  }
 }
 
 
