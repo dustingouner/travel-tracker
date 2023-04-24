@@ -2,17 +2,31 @@
   font-family: 'Roboto', sans-serif;
 }
 
-* {
+/* * {
   border: 2px solid blue;
   margin: 0;
+} */
+
+html {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+  ), url(/src/images/boat_background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-html, body {
-  background-color: lightseagreen;
+
+/* html, body {
+  /* background-color: lightseagreen; */
   /* height: 100vh;
   width: 100vw */
   
-}
+/* } */ */
 
 .hidden {
   display: none;
@@ -27,11 +41,13 @@ header {
 }
 
 .header-title {
-  margin-left: 20px
+  margin-left: 20px;
+  color: white
 }
 
 .header-welcome-message {
-  margin-right: 20px
+  margin-right: 20px;
+  color: white
 }
 
 .nav-container {
@@ -49,14 +65,16 @@ header {
 }
 
 .user-annual-amount-spent {
-  margin-top: 5px
+  margin-top: 5px;
+  color: white;
+  font-weight: 700
 }
 
 .user-spent-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 85px;
+  height: 60px;
   width: 300px;
   justify-content: flex-end;
   margin-bottom: 5px;
@@ -64,9 +82,16 @@ header {
 
 .user-spend-title {
   margin-bottom: 0px;
-  margin-top: 2px
+  margin-top: 2px;
+  color: white
 }
 
+/* .top-container {
+  background-image: url(/src/images/water_background.png);
+  background-repeat: no-repeat;
+  background-position: absolute;
+  background-size: cover;
+} */
 /* .book-adventure-button {
   height: 50px;
   width: 250px;
@@ -76,7 +101,7 @@ header {
 } */
 
 .trip-selection-buttons-container {
-  height: 85px;
+  height: 60px;
   width: 455px;
   margin-left: 20px;
   display: flex;
@@ -118,11 +143,21 @@ header {
   box-sizing: content-box;
 }
 
+.est-cost {
+  color: white;
+  text-align: center;
+}
+
 .trip-cards-container {
   height: 65vh;
   width: 100vw;
 }
 
+.past-trips-title, .pending-trips-title {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
 /* footer {
   height: 10vh;
   display: flex;
@@ -144,25 +179,33 @@ article {
   grid-auto-columns: 10%;
   justify-content: center;
   padding: 0 var(--spacer) var(--spacer);
-
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  padding-inline: var(--gap);
+  scroll-padding-inline: var(--gap);
+  padding-block: calc(var(--gap) / 2);
 }
 
 .media-element {
   display: grid;
   grid-template-rows: min-content ;
-  gap: var(--spacer);
-  padding: 10px;
+  gap: 12px;
+  padding: 2px;
   background: var(--surface--2);
   border-radius: var(--radius--2);
-  box-shadow: var(--shadow-2);
+  /* box-shadow: var(--shadow-2); */
   text-align: center;
+  background-color: antiquewhite;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .media-element > img {
-  inline-size: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  /* inline-size: 100%; */
   object-fit: cover;
+  position: relative;
+  aspect-ratio: 16/9;
 }
 
 .snaps-inline {
@@ -188,4 +231,14 @@ article {
 
 .dest-title {
   font-weight: 700;
+  font-size: 12px;
+}
+
+.dest-date, .traveler-number, .traveler-duration {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none;
 }
