@@ -15,7 +15,7 @@ import './images/water_background.png'
 // console.log('This is the JavaScript entry file - your code begins here.');
 
 // <----------------GLOBAL VARIABLES----------------->
-let travelersData, tripsData, destinationsData, traveler, destinations
+let travelersData, tripsData, destinationsData, traveler, destinations, userID
 
 
 // <----------------QUERY SELECTORS------------------>
@@ -41,45 +41,53 @@ const inputDuration = document.getElementById('inputDuration')
 const inputTravelers = document.getElementById('inputTravelers')
 const select = document.querySelector('#selectDestination')
 const destOptions = document.querySelector('.destOptions')
-
+const loginButton = document.querySelector('.login-button')
+const userNameLogin = document.getElementById('userNameLogin')
+const userPasswordLogin = document.getElementById('userPasswordLogin')
+const loginPage = document.getElementById('login-page')
+const topContainer = document.getElementById('topContainer')
+const tripCardContainer = document.getElementById('tripCardContainer')
 
 // <----------------EVENT LISTENERS------------------>
 
-window.addEventListener('load', () => {
 
-  function fetchAPIData(travelData) {
-    const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
-    .then(response => response.json())
-    .catch(error => console.log(error))
-    return fetchedData
-  }
-  
-  Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
-  .then((data) => {
-    travelersData = data[0].travelers
-    destinationsData = data[1].destinations
-    tripsData = data[2].trips
-  })
-  .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 43)
-    traveler = new Traveler(currentTraveler)
-    destinations = new Destination(destinationsData)
-    displayTravelerName()
-    displayTotalTravelCost()
-    displayPastTrips(tripsData)
-    displayPendingTrips(tripsData)
-    disablePastDates()
-    addDestinationSelection(destinationsData)
-  })
-  .catch(error => console.log(error))
 
+// window.addEventListener('load', () => {
+
+//   function fetchAPIData(travelData) {
+//     const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
+//     .then(response => response.json())
+//     .catch(error => console.log(error))
+//     return fetchedData
+//   }
   
-})
+//   Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
+//   .then((data) => {
+//     travelersData = data[0].travelers
+//     destinationsData = data[1].destinations
+//     tripsData = data[2].trips
+//   })
+//   .then(() => {
+//     const userID = userNameLogin.value.replace('travel', '')
+//     console.log(userID)
+//     let currentTraveler = travelersData.find(traveler => traveler.id === userID)
+//     traveler = new Traveler(currentTraveler)
+//     destinations = new Destination(destinationsData)
+//     displayTravelerName()
+//     displayTotalTravelCost()
+//     displayPastTrips(tripsData)
+//     displayPendingTrips(tripsData)
+//     disablePastDates()
+//     addDestinationSelection(destinationsData)
+//   })
+//   .catch(error => console.log(error))
+// })
   
 // pastTripsButton.addEventListener('click', travel)
 estTripButton.addEventListener('click', displayTripEstimate)
 bookTripButton.addEventListener('click', bookNewTrip)
 // pendingTripsButton.addEventListener('click', displayPendingTrips)
+loginButton.addEventListener('click', fetchAPI)
 
 // <----------------FUNCTIONS----------------------->
 
@@ -170,7 +178,7 @@ function displayTripEstimate() {
     // console.log('destination', destID)
     // console.log('traveler', traveler.getTravelerID())//returns traveler id #5
     const estimatedTripCost = destinations.estimateTripCost(destID, parseInt(inputDuration.value), parseInt(inputTravelers.value))
-    console.log(estimatedTripCost)
+    // console.log(estimatedTripCost)
     estCost.innerText = `Est cost: ${estimatedTripCost}`
   }
 }
@@ -200,7 +208,7 @@ function bookNewTrip(event) {
     })
     .then(response => response.json())
     .then(() => {
-      fetchAPI()
+      fetchOnBook()
       inputTravelers.value = ''
       inputDuration.value = ''
       inputDate.value = ''
@@ -220,8 +228,10 @@ function reformatDate() {
 // }
 
 
-function fetchAPI() {
- 
+function fetchAPI(event) {
+  event.preventDefault()
+  
+  console.log('is this working')
   function fetchAPIData(travelData) {
     const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
     .then(response => response.json())
@@ -236,9 +246,56 @@ function fetchAPI() {
     tripsData = data[2].trips
   })
   .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 43)
+    let userID = parseInt(userNameLogin.value.replace('traveler', ''))
+    if (!userNameLogin.value || !userNameLogin.value.includes('traveler') || !travelersData.find(traveler => traveler.id === userID && traveler.id > 0 && userPasswordLogin.value === "travel")) {
+      alert('Please enter in correct user name or password!')
+    } else {
+    let userID = parseInt(userNameLogin.value.replace('traveler', ''))
+    let currentTraveler = travelersData.find(traveler => traveler.id === userID)
     traveler = new Traveler(currentTraveler)
     destinations = new Destination(destinationsData)
+    displayTravelerPage()
+    displayTravelerName()
+    displayTotalTravelCost()
+    displayPastTrips(tripsData)
+    displayPendingTrips(tripsData)
+    disablePastDates()
+    addDestinationSelection(destinationsData)
+    }
+  })
+  .catch(error => console.log(error))
+
+}
+
+function displayTravelerPage() {
+  loginPage.classList.add('hidden')
+  topContainer.classList.remove('hidden')
+  tripCardContainer.classList.remove('hidden')
+
+}
+
+function fetchOnBook() {
+
+  function fetchAPIData(travelData) {
+    const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
+    .then(response => response.json())
+    .catch(error => console.log(error))
+    return fetchedData
+  }
+  
+  Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
+  .then((data) => {
+    travelersData = data[0].travelers
+    destinationsData = data[1].destinations
+    tripsData = data[2].trips
+  })
+  .then(() => {
+    console.log('this')
+    let userID = parseInt(userNameLogin.value.replace('traveler', ''))
+    let currentTraveler = travelersData.find(traveler => traveler.id === userID)
+    traveler = new Traveler(currentTraveler)
+    destinations = new Destination(destinationsData)
+    displayTravelerPage()
     displayTravelerName()
     displayTotalTravelCost()
     displayPastTrips(tripsData)
