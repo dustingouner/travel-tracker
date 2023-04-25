@@ -48,7 +48,7 @@ const tripCardContainer = document.getElementById('tripCardContainer')
 
 
 
-window.addEventListener('load', fetchAPI)
+window.addEventListener('load',fetchAPI)
 
 estTripButton.addEventListener('click', displayTripEstimate)
 bookTripButton.addEventListener('click', bookNewTrip)
@@ -74,6 +74,7 @@ function fetchAPI() {
     if(traveler) {
       updateDom()
     }
+    // loginAttempt('traveler4', 'travel')
   })
   .catch(error => console.log(error))
 }

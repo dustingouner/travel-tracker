@@ -182,6 +182,7 @@ header {
   width: 198px;
   justify-content: space-around;
   box-sizing: content-box;
+  cursor: pointer;
 }
 
 .form-buttons {
@@ -231,7 +232,7 @@ header {
   justify-content: center;
   padding: 0 var(--spacer) var(--spacer);
   overflow-x: auto;
-  /* overscroll-behavior-inline: contain; */
+  overscroll-behavior-inline: contain;
   padding-inline: var(--gap);
   scroll-padding-inline: var(--gap);
   padding-block: calc(var(--gap) / 2);
@@ -244,7 +245,6 @@ header {
   padding: 2px;
   background: var(--surface--2);
   border-radius: var(--radius--2);
-  /* box-shadow: var(--shadow-2); */
   text-align: center;
   background-color: antiquewhite;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
