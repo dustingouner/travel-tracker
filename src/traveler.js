@@ -1,7 +1,6 @@
  class Traveler {
   constructor(travelerDataObj) {
   this.traveler = travelerDataObj
-  
   }
 
   getTravelerID() {
@@ -42,10 +41,6 @@
     console.log(annualStrNum)
   }
 }
-
-
-
-
 
 export default Traveler;
 

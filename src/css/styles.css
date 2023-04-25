@@ -3,8 +3,7 @@
 }
 
 /* * {
-  border: 2px solid blue;
-  margin: 0;
+  border: 2px solid white;
 } */
 
 html, body {
@@ -21,15 +20,8 @@ html, body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin: 0;
 }
-
-
-/* html, body {
-  /* background-color: lightseagreen; */
-  /* height: 100vh;
-  width: 100vw */
-  
-/* } */ 
 
 .login-page-container {
   display: flex;
@@ -39,12 +31,13 @@ html, body {
 }
 
 .login-page-title, .login-page-message {
+  height: 75px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
   align-items: center;
   color: white;
+  font-size: 25px;
 }
 
 .login-form {
@@ -65,13 +58,15 @@ html, body {
 }
 
 .login-button {
-  height: 50px;
-  width: 100px;
+  height: 29px;
+  width: 97px;
+  font-size: 17px;
+  border-radius: 4px;
+  background-color: teal;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
 }
-
-
-
-
 
 .login-input {
   display: flex;
@@ -85,23 +80,20 @@ html, body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-
-
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-  
 }
 
 .header-title {
-  margin-left: 20px;
+  margin-left: 100px;
   color: white
 }
 
 .header-welcome-message {
-  margin-right: 20px;
+  margin-right: 100px;
   color: white
 }
 
@@ -131,8 +123,9 @@ header {
   align-items: center;
   height: 60px;
   width: 300px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-bottom: 5px;
+  margin-left: 95px
 }
 
 .user-spend-title {
@@ -140,20 +133,6 @@ header {
   margin-top: 2px;
   color: white
 }
-
-/* .top-container {
-  background-image: url(/src/images/water_background.png);
-  background-repeat: no-repeat;
-  background-position: absolute;
-  background-size: cover;
-} */
-/* .book-adventure-button {
-  height: 50px;
-  width: 250px;
-  border-radius: 5px;
-  background-color: blue;
-  color: white;
-} */
 
 .trip-selection-buttons-container {
   height: 60px;
@@ -180,6 +159,7 @@ header {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin-top: 21px
 }
 
 .book-trip-form {
@@ -187,6 +167,12 @@ header {
   width: 850px;
   display: flex;
   justify-content: space-around;
+}
+
+.form-title {
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 8px
 }
 
 .input {
@@ -198,9 +184,19 @@ header {
   box-sizing: content-box;
 }
 
+.form-buttons {
+  /* border-radius: 2px;
+  color: white; */
+  margin-top: 15px;
+  width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .est-cost {
   color: white;
   text-align: center;
+  margin-top: 19px;
 }
 
 .trip-cards-container {
@@ -208,22 +204,22 @@ header {
   width: 100vw;
 }
 
+.past-trips-container {
+  height: 245px;
+  margin-top: 35px;
+}
+
+.pending-trips-container {
+  height: 55px;
+  margin-top: 25px
+}
+
 .past-trips-title, .pending-trips-title {
   display: flex;
   justify-content: center;
   color: white;
+  margin-top: 0px;
 }
-/* footer {
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  
-}
-
-article {
-  height: 100px;
-} */
 
 .media-scroller {
   margin-top: 10px;
@@ -282,6 +278,12 @@ article {
 
 .estimate-trip-button , .book-trip-button {
   cursor: pointer;
+  width: 135px;
+  height: 30px;
+  background-color: teal;
+  color: white;
+  font-weight: 500;
+  border-radius: 2px;
 }
 
 .dest-title {
@@ -297,3 +299,6 @@ article {
 .hidden {
   display: none;
 }
+
+
+
