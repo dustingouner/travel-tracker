@@ -10,7 +10,24 @@
   <title>JETSETTERS HAVEN</title>
 </head>
 <body>
-  <div class="top-container">
+  <section class="login-page-container" id="login-page">
+    <h1 class="login-page-title">JETSETTERS HAVEN</h1>
+    <P class="login-page-message">WELCOME BACK! LET US BOOK YOUR NEXT VACATION</P>
+    <form action="" method="" class="login-form">
+      <section class="login-input">
+        <div class="user-name-container">
+          <label for="userName">UserName</label>
+          <input class="user-name-login" id="userNameLogin" type="text" placeholder="Enter User Name" name="userName" required>
+        </div>
+        <div class="user-password-container">
+          <label for="password">Password</label>
+          <input class="user-password-login" id="userPasswordLogin" type="password" placeholder="Enter Password" name="password" required> 
+        </div>
+        <button class="login-button" type="submit">Login</button>
+      </section>
+    </form>
+  </section>
+  <div class="top-container hidden" id="topContainer">
     <header>
       <h1 class="header-title">JETSETTERS HAVEN</h1>
       <h2 class="header-welcome-message"></h2>
@@ -26,7 +43,6 @@
           <h3 class="user-spend-title">Total Annual Spend</h3>
           <p class="user-annual-amount-spent"></p>
         </div>
-        <!-- <button class="book-adventure-button">BOOK NEW ADVENTURE</button> -->
       </section>
     </nav>
     <section class="book-trip-form-container">
@@ -45,9 +61,8 @@
         <h2 class="est-cost"></h2>
       </section>
     </section>
-
   </div>
-  <section class="trip-cards-container">
+  <section class="trip-cards-container hidden" id="tripCardContainer">
     <div class="past-trips-container" id="pastTripsContainer">
     <h2 class="past-trips-title">Past Trips</h2>
     <div class="media-scroller snaps-inline" id="pastTrips">
@@ -57,26 +72,6 @@
       <div class="media-scroller snaps-inline" id="pendingTrips">
       </div>
   </section>
-  <!-- <footer>
-    <article>
-      <h3>About us</h3>
-      <p>Our Story</p>
-      <p>How it Works</p>
-      <p>FAQ</p>
-    </article>
-    <article>
-      <h3>Get Inspired</h3>
-      <p>Hiking Tips</p>
-      <p>Checklist for Traveling</p>
-      <p>Restaurants</p>
-    </article>
-    <article>
-      <h3>Support</h3>
-      <p>Help</p>
-      <p>Contact Us</p>
-      <p>Terms of Service</p>
-    </article>
-  </footer> -->
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->

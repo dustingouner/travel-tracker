@@ -38,7 +38,6 @@
       const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration
       return acc + Math.round(((flightCost + lodgingCost) * 1.1))
     }, 0)
-    console.log(totalCost)
     return  `$${totalCost.toLocaleString('en-US')}`
     console.log(annualStrNum)
   }

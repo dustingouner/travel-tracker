@@ -15,11 +15,10 @@ import './images/water_background.png'
 // console.log('This is the JavaScript entry file - your code begins here.');
 
 // <----------------GLOBAL VARIABLES----------------->
-let travelersData, tripsData, destinationsData, traveler, destinations
+let travelersData, tripsData, destinationsData, traveler, destinations, userID
 
 
 // <----------------QUERY SELECTORS------------------>
-const pastTripsButton = document.querySelector('.past-trips-button')
 const pendingTripsButton = document.querySelector('.pending-trips-button')
 const welcomeName = document.querySelector('.header-welcome-message')
 const totalSpend = document.querySelector('.user-annual-amount-spent')
@@ -41,45 +40,24 @@ const inputDuration = document.getElementById('inputDuration')
 const inputTravelers = document.getElementById('inputTravelers')
 const select = document.querySelector('#selectDestination')
 const destOptions = document.querySelector('.destOptions')
-
+const loginButton = document.querySelector('.login-button')
+const userNameLogin = document.getElementById('userNameLogin')
+const userPasswordLogin = document.getElementById('userPasswordLogin')
+const loginPage = document.getElementById('login-page')
+const topContainer = document.getElementById('topContainer')
+const tripCardContainer = document.getElementById('tripCardContainer')
 
 // <----------------EVENT LISTENERS------------------>
 
-window.addEventListener('load', () => {
 
-  function fetchAPIData(travelData) {
-    const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
-    .then(response => response.json())
-    .catch(error => console.log(error))
-    return fetchedData
-  }
-  
-  Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
-  .then((data) => {
-    travelersData = data[0].travelers
-    destinationsData = data[1].destinations
-    tripsData = data[2].trips
-  })
-  .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 43)
-    traveler = new Traveler(currentTraveler)
-    destinations = new Destination(destinationsData)
-    displayTravelerName()
-    displayTotalTravelCost()
-    displayPastTrips(tripsData)
-    displayPendingTrips(tripsData)
-    disablePastDates()
-    addDestinationSelection(destinationsData)
-  })
-  .catch(error => console.log(error))
 
-  
-})
-  
-// pastTripsButton.addEventListener('click', travel)
+window.addEventListener('load', fetchAPI)
+
 estTripButton.addEventListener('click', displayTripEstimate)
 bookTripButton.addEventListener('click', bookNewTrip)
-// pendingTripsButton.addEventListener('click', displayPendingTrips)
+loginButton.addEventListener('click', (event) => {
+  event.preventDefault()
+  loginAttempt(userNameLogin.value, userPasswordLogin.value)})
 
 // <----------------FUNCTIONS----------------------->
 
@@ -93,7 +71,6 @@ function displayTotalTravelCost() {
 }
 
 function displayPastTrips(trips) {
-
   const pastTrips = traveler.getPastTrips(trips)
   pastTripContainer.innerHTML = ''
   const addPastTrips = pastTrips.forEach(trip => {
@@ -113,8 +90,6 @@ function displayPastTrips(trips) {
 }
 
 function displayPendingTrips(tripsData) {
-  // console.log(tripsData)
-  // hidePastTrips()
   pendingTripContainer.classList.remove('hidden')
   const pendingTrips = traveler.getPendingTrips(tripsData)
   pendingTripContainer.innerHTML = ''
@@ -163,20 +138,13 @@ function displayTripEstimate() {
   if(!inputDate.value || !inputDuration.value || !inputTravelers.value || !destID) {
     window.alert('Please make sure to select a date and destination and make sure to fill in the number of travelers and duration.')
   } else {
-
-    // console.log('date', inputDate.value)
-    // console.log('duration', parseInt(inputDuration.value))
-    // console.log('travelers', parseInt(inputTravelers.value))
-    // console.log('destination', destID)
-    // console.log('traveler', traveler.getTravelerID())//returns traveler id #5
     const estimatedTripCost = destinations.estimateTripCost(destID, parseInt(inputDuration.value), parseInt(inputTravelers.value))
-    console.log(estimatedTripCost)
     estCost.innerText = `Est cost: ${estimatedTripCost}`
   }
 }
 
-function bookNewTrip(event) {
-  event.preventDefault()
+function bookNewTrip() {
+  
   const options = select.options
   const destID = parseInt(options[options.selectedIndex].id)
   const bookingDate = reformatDate()
@@ -201,6 +169,7 @@ function bookNewTrip(event) {
     .then(response => response.json())
     .then(() => {
       fetchAPI()
+      
       inputTravelers.value = ''
       inputDuration.value = ''
       inputDate.value = ''
@@ -215,13 +184,9 @@ function reformatDate() {
   return reformattedDate
 }
 
-// function hidePastTrips() {
-//   pastTripContainer.classList.add('hidden')
-// }
-
 
 function fetchAPI() {
- 
+  
   function fetchAPIData(travelData) {
     const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
     .then(response => response.json())
@@ -234,18 +199,41 @@ function fetchAPI() {
     travelersData = data[0].travelers
     destinationsData = data[1].destinations
     tripsData = data[2].trips
-  })
-  .then(() => {
-    let currentTraveler = travelersData.find(traveler => traveler.id === 43)
-    traveler = new Traveler(currentTraveler)
     destinations = new Destination(destinationsData)
+    if(traveler) {
+      updateDom()
+    }
+  })
+  .catch(error => console.log(error))
+
+}
+
+function loginAttempt(user, pass) {
+  let userID = parseInt(user.replace('traveler', ''))
+    if (!user || !user.includes('traveler') || !travelersData.find(traveler => traveler.id === userID && traveler.id > 0 && pass=== "travel")) {
+      alert('Please enter in correct user name or password!')
+    } else {
+      let currentTraveler = travelersData.find(traveler => traveler.id === userID)
+      traveler = new Traveler(currentTraveler)
+      updateDom()
+    }
+}
+
+function updateDom() {
+    displayTravelerPage()
     displayTravelerName()
     displayTotalTravelCost()
     displayPastTrips(tripsData)
     displayPendingTrips(tripsData)
     disablePastDates()
     addDestinationSelection(destinationsData)
-  })
-  .catch(error => console.log(error))
 }
+
+function displayTravelerPage() {
+  loginPage.classList.add('hidden')
+  topContainer.classList.remove('hidden')
+  tripCardContainer.classList.remove('hidden')
+
+}
+
 
