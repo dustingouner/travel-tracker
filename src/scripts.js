@@ -8,9 +8,7 @@ import Destination from './destination';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-import './images/new-zealand.png'
-import './images/water_background.png'
-
+import './images/boat_background.png'
 
 // console.log('This is the JavaScript entry file - your code begins here.');
 
@@ -19,7 +17,6 @@ let travelersData, tripsData, destinationsData, traveler, destinations, userID
 
 
 // <----------------QUERY SELECTORS------------------>
-const pendingTripsButton = document.querySelector('.pending-trips-button')
 const welcomeName = document.querySelector('.header-welcome-message')
 const totalSpend = document.querySelector('.user-annual-amount-spent')
 const cardImage = document.querySelector('.card-image')
@@ -51,7 +48,7 @@ const tripCardContainer = document.getElementById('tripCardContainer')
 
 
 
-window.addEventListener('load', fetchAPI)
+window.addEventListener('load',fetchAPI)
 
 estTripButton.addEventListener('click', displayTripEstimate)
 bookTripButton.addEventListener('click', bookNewTrip)
@@ -61,6 +58,47 @@ loginButton.addEventListener('click', (event) => {
 
 // <----------------FUNCTIONS----------------------->
 
+function fetchAPI() {
+  function fetchAPIData(travelData) {
+    const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
+    .then(response => response.json())
+    .catch(error => console.log(error))
+    return fetchedData
+  }
+  Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
+  .then((data) => {
+    travelersData = data[0].travelers
+    destinationsData = data[1].destinations
+    tripsData = data[2].trips
+    destinations = new Destination(destinationsData)
+    if(traveler) {
+      updateDom()
+    }
+    // loginAttempt('traveler4', 'travel')
+  })
+  .catch(error => console.log(error))
+}
+
+function loginAttempt(user, pass) {
+  let userID = parseInt(user.replace('traveler', ''))
+    if (!user || !user.includes('traveler') || !travelersData.find(traveler => traveler.id === userID && traveler.id > 0 && pass=== "travel")) {
+      alert('Please enter in correct user name or password!')
+    } else {
+      let currentTraveler = travelersData.find(traveler => traveler.id === userID)
+      traveler = new Traveler(currentTraveler)
+      updateDom()
+    }
+}
+
+function updateDom() {
+  displayTravelerPage()
+  displayTravelerName()
+  displayTotalTravelCost()
+  displayPastTrips(tripsData)
+  displayPendingTrips(tripsData)
+  disablePastDates()
+  addDestinationSelection(destinationsData)
+}
 
 function displayTravelerName() {
   welcomeName.innerText = `Welcome Back, ${traveler.getTravelerFirstName()}!`
@@ -144,7 +182,6 @@ function displayTripEstimate() {
 }
 
 function bookNewTrip() {
-  
   const options = select.options
   const destID = parseInt(options[options.selectedIndex].id)
   const bookingDate = reformatDate()
@@ -169,7 +206,6 @@ function bookNewTrip() {
     .then(response => response.json())
     .then(() => {
       fetchAPI()
-      
       inputTravelers.value = ''
       inputDuration.value = ''
       inputDate.value = ''
@@ -184,56 +220,11 @@ function reformatDate() {
   return reformattedDate
 }
 
-
-function fetchAPI() {
-  
-  function fetchAPIData(travelData) {
-    const fetchedData = fetch(`http://localhost:3001/api/v1/${travelData}`)
-    .then(response => response.json())
-    .catch(error => console.log(error))
-    return fetchedData
-  }
-  
-  Promise.all([fetchAPIData('travelers'), fetchAPIData('destinations'), fetchAPIData('trips')])
-  .then((data) => {
-    travelersData = data[0].travelers
-    destinationsData = data[1].destinations
-    tripsData = data[2].trips
-    destinations = new Destination(destinationsData)
-    if(traveler) {
-      updateDom()
-    }
-  })
-  .catch(error => console.log(error))
-
-}
-
-function loginAttempt(user, pass) {
-  let userID = parseInt(user.replace('traveler', ''))
-    if (!user || !user.includes('traveler') || !travelersData.find(traveler => traveler.id === userID && traveler.id > 0 && pass=== "travel")) {
-      alert('Please enter in correct user name or password!')
-    } else {
-      let currentTraveler = travelersData.find(traveler => traveler.id === userID)
-      traveler = new Traveler(currentTraveler)
-      updateDom()
-    }
-}
-
-function updateDom() {
-    displayTravelerPage()
-    displayTravelerName()
-    displayTotalTravelCost()
-    displayPastTrips(tripsData)
-    displayPendingTrips(tripsData)
-    disablePastDates()
-    addDestinationSelection(destinationsData)
-}
-
 function displayTravelerPage() {
   loginPage.classList.add('hidden')
   topContainer.classList.remove('hidden')
   tripCardContainer.classList.remove('hidden')
-
 }
+
 
 

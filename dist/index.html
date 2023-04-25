@@ -33,11 +33,6 @@
       <h2 class="header-welcome-message"></h2>
     </header>
     <nav class="nav-container">
-      <section class="trip-selection-buttons-container">
-        <!-- <button class="nav-trip-selection-button past-trips-button">Past Trips</button>
-        <button class="nav-trip-selection-button upcoming-trips-button">Upcoming Trips</button>
-        <button class="nav-trip-selection-button pending-trips-button">Pending Trips</button> -->
-      </section>
       <section class="nav-right-side">
         <div class="user-spent-container">
           <h3 class="user-spend-title">Total Annual Spend</h3>
@@ -55,11 +50,11 @@
           <option class="destOptions" value="" disabled selected>Select Your Destination</option>
         </select>
       </form>
-      <section>
+      <section class="form-buttons">
         <button class="estimate-trip-button">ESTIMATE COST</button>
         <button class="book-trip-button">BOOK TRIP</button>
-        <h2 class="est-cost"></h2>
       </section>
+      <h2 class="est-cost"></h2>
     </section>
   </div>
   <section class="trip-cards-container hidden" id="tripCardContainer">
@@ -73,9 +68,7 @@
       </div>
   </section>
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-  
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>

@@ -3,8 +3,6 @@ const expect = chai.expect;
 import Traveler from '../src/traveler'
 import mockData from '../src/data/mockData'
 
-
-
 // describe('See if the tests are running', function() {
 //   it('should return true', function() {
 //     expect(true).to.equal(true);
@@ -17,8 +15,8 @@ describe('Traveler', function() {
     allDestinations = mockData.destinations 
     allTrips = mockData.trips
     travelersData = mockData.travelers
-    traveler1 = new Traveler(travelersData[1])//traveler id 2
-    traveler2 = new Traveler(travelersData[2])//traveler id 3
+    traveler1 = new Traveler(travelersData[1])
+    traveler2 = new Traveler(travelersData[2])
   })
 
   it('should be a function', function () {
