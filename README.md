@@ -1,102 +1,45 @@
-# Webpack Starter Kit
-
-## Clone This Repo
-
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
-
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
-
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
-
-## Setup
-
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
-
-Then install the library dependencies. Run:
-
-```bash
-npm install
-```
-
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
-
-## Where to Add Your Code
-
-### JavaScript
-
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
-
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+## About
+Travel Tracker is a locally-hosted, web-based application designed to help users track pending/past trips and have the ability to estimate or book a new trip. A user can login to their own home page by entering their username and password in the login form. Travelers will first see their past/pending trips and a total amount spent to date on trips. 
 
 ---
 
-## Test Files Organization
+## Set Up 
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+> ### Installing the files
+> - Fork this [repository](https://github.com/dustingouner/travel-tracker.git) to your GitHub account. 
+> - In your forked respository, click the `code` drop-down menu and copy the SSH key.
+> - On your local machine, open the terminal using  `⌘ + space` and navigate to the location you'd like the flashcards repository directory cloned to. 
+> - Once you're there, run `git clone [SSH Key] [travel-tracker]` via the command line.
+> - Run `npm install`. 
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
+> ### Opening the application
+> - When you're ready to use the app, open the terminal and navigate to the travel-tracker directory via the terminal.
+> - In the terminal, use command+t to open a new terminal tab. 
+> - In the new terminal tab, run `npm start`.
+> - Once WebPack has compiled the necessary resources, you will see a link within the text of your terminal. You can copy and paste that link into your browser to access a locally-hosted version of this application on your machine. 
 
 ---
 
-## Linting Your Code
+## Preview
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+![travel-tracker-final](https://user-images.githubusercontent.com/117230717/234349617-47e22846-d63d-42b0-8711-8739ca6f5742.gif)
 
 
-Is this working
+---
+
+## Contributors
+
+Dustin Gouner  [GitHub](https://github.com/dustingouner) | [LinkedIn](https://www.linkedin.com/in/dustin-gouner/)
+
+---
+
+## Context
+This was my final solo project while in Mod 2 at [Turing School of Software and Design Front End Web Development program](https://frontend.turing.edu/), a four- module, seven-month course focused on preparing students for a career as web developers working with Javascript, HTML, CSS, and the React framework. The application was built over the course of five days, during which I also completed final technical assessments to move on to Mod 3. Travel Tracker accesses remote serve data, and was written utilizing JavaScript, HTML, CSS, and WebPack bundler. The development process leaned heavily on test-driven development, especially in its earliest stages. 
+
+---
+
+## Goals and Challenges 
+The primary goal of this project was for me to synthesize and showcase my learning as a new developer. Building the Travel Tracker application required me to apply all of the skills, technologies, and tools that I had become familiar with, challenging me to implement my learning on a broader scale and at a deeper level than in any previous project at Turing. Additionally, I had to integrate a few novel tools and functionalities, such as fetching API data and using the bundler WebPack, error handling, and user-specific login capabilities. Setting up a login screen that could fetch API data on page load and use conditionals to verify username and password presented several new challenges. As always, CSS can be a challenging aspect when attempting to add new features to a page, such as a media scroller and properly sizing photo cards with information.
+
+## Future Development Opportunities
+Given more time, I would have prioritized enhancing the travel-tracker application by incorporating additional functionality, strengthening accessibility, and incorporating more interactive elements. Specifically, I would have implemented a modal box to display upon clicking the estimate cost button, as well as integrating npm libraries to showcase the trip cards in a more visually engaging manner, such as a glider. Another significant addition would be incorporating a separate login set specifically for agents to approve pending trips and enable the user to select which trip category to display on the page. These enhancements would improve the application's overall usability and user experience, providing a more seamless and intuitive experience for users while demonstrating my proficiency in leveraging advanced tools and technologies.
