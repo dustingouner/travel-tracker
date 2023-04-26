@@ -8,7 +8,7 @@ Travel Tracker is a locally-hosted, web-based application designed to help users
 ### Installing the files
  - Fork this [repository](https://github.com/dustingouner/travel-tracker.git) to your GitHub account. 
  - In your forked respository, click the `code` drop-down menu and copy the SSH key.
- - On your local machine, open the terminal using  `⌘ + space` and navigate to the location you'd like the flashcards repository directory cloned to. 
+ - On your local machine, open the terminal and navigate to the location you'd like the repository directory cloned to. 
  - Once you're there, run `git clone [SSH Key] [travel-tracker]` via the command line.
  - Run `npm install`. 
 
